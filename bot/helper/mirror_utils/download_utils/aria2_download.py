@@ -31,7 +31,7 @@ class AriaDownloadHelper(DownloadHelper):
             gdrive = GoogleDriveHelper(None)
             smsg, button = gdrive.drive_list(sname)
           if smsg:
-              dl.getListener().onDownloadError(f'File Has Been Uploaded Previously Into The Team Drive 📁.\nKindly Search Next Time Before Mirroring, This Download Has Been Cancelled. ❌\n\n')
+              dl.getListener().onDownloadError(f'😡 𝑭𝒊𝒍𝒆 𝒊𝒔 𝒂𝒍𝒓𝒆𝒂𝒅𝒚 𝒂𝒗𝒂𝒊𝒍𝒂𝒃𝒍𝒆 𝒊𝒏 𝑫𝒓𝒊𝒗𝒆\n𝑭𝒊𝒔𝒓𝒕 𝒔𝒆𝒂𝒓𝒄𝒉 𝑩𝒆𝒇𝒐𝒓𝒆 𝑴𝒊𝒓𝒓𝒐𝒓𝒊𝒏𝒈 𝒂𝒏𝒚𝒕𝒉𝒊𝒏𝒈 😡\n𝑰𝒇 𝒚𝒐𝒖 𝒅𝒐 𝒕𝒉𝒊𝒔 𝒂𝒈𝒂𝒊𝒏❗ 𝒀𝒐𝒖 𝒘𝒊𝒍𝒍 𝒃𝒆 𝑩𝒂𝒏 😐.\n\n')
               sendMarkup(" <b>Here are the search results:</b> 👇👇", dl.getListener().bot, dl.getListener().update, button)
               aria2.remove([download])
           return
@@ -58,13 +58,13 @@ class AriaDownloadHelper(DownloadHelper):
     def __onDownloadPause(self, api, gid):
         LOGGER.info(f"onDownloadPause: {gid}")
         dl = getDownloadByGid(gid)
-        dl.getListener().onDownloadError('★ 𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱 𝗪𝗮𝘀 𝗖𝗮𝗻𝗰𝗲𝗹𝗹𝗲𝗱 𝗕𝘆 𝗨𝘀𝗲𝗿!! ★')
+        dl.getListener().onDownloadError('<b> DownloadinG cancelled by user!</b> ')
 
     @new_thread
     def __onDownloadStopped(self, api, gid):
         LOGGER.info(f"onDownloadStop: {gid}")
         dl = getDownloadByGid(gid)
-        if dl: dl.getListener().onDownloadError('★ 𝗧𝗼𝗿𝗿𝗲𝗻𝘁/𝗠𝗮𝗴𝗻𝗲𝘁 𝗟𝗶𝗻𝗸 𝗜𝘀 𝗗𝗲𝗮𝗱 ❌ ★')
+        if dl: dl.getListener().onDownloadError('𝐘𝐨𝐮𝐫 𝐋𝐢𝐧𝐤 𝐢𝐬 𝐃𝐄𝐀𝐃 ❗ 😒 𝐃𝐨𝐧❜𝐭 𝐮𝐬𝐞 𝐋𝐨𝐰 𝐒𝐞𝐞𝐝𝐬 𝐓𝐨𝐫𝐫𝐞𝐧𝐭')
 
     @new_thread
     def __onDownloadError(self, api, gid):
