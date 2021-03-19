@@ -248,7 +248,7 @@ def _mirror(bot, update, isTar=False, extract=False):
     else:
         tag = None
     if not bot_utils.is_url(link) and not bot_utils.is_magnet(link):
-        sendMessage('opps 🤦\n\n📋 **Example**: \n\n➩ **For Torrent , Direct URL**:\n`/filesmirror {your Torrent link\n\n➩ **For Telegram Media**:\n`Send Telegram media and Reply with /filesmirror`', bot, update)
+        sendMessage('Opps 🤦\n\n📋 <b>Example</b>: \n\n➩ <b>For Torrent , Direct URL</b>:\n👉 <code>/filesmirror</code> {your Torrent link }\n\n➩ <b>For Telegram Media</b>:\n👉 Send Telegram media and Reply with <code>/filesmirror</code>', bot, update)
         return
 
     try:
@@ -268,7 +268,7 @@ def _mirror(bot, update, isTar=False, extract=False):
             sendMessage(f"<b>★ Mega.nz Link Added To 📊 /{BotCommands.StatusCommand}\n★ Only 1 Download At A Time Otherwise Ban.\n★ Do Not Forget To Read Mega Download Rules.</b>", bot, update)
     else:
         ariaDlManager.add_download(link, f'{DOWNLOAD_DIR}/{listener.uid}/', listener, name)
-        sendMessage(bot, update)
+        sendMessage(f"<b> Your Link has been ADDED for Mirror😋.\n Check /Status</b>", bot, update)
     if len(Interval) == 0:
         Interval.append(setInterval(DOWNLOAD_STATUS_UPDATE_INTERVAL, update_all_messages))
 
