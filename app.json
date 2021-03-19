@@ -7,9 +7,9 @@
       "telegram",
       "python"
     ],
-    "repository": "https://github.com/MaxxRider/files-mirror",
+    "repository": "https://github.com/ThorStorage/files-mirror",
     "website": "https://t.me/MaxxRidert",
-    "success_url": "https://github.com/MaxxRider/files-mirror/blob/master/README.md",
+    "success_url": "https://github.com/ThorStorage/files-mirror/blob/master/README.md",
     "stack": "container",
     "env": {
       "ENV": {
