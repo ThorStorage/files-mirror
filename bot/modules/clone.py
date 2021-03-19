@@ -12,13 +12,13 @@ def cloneNode(update,context):
     args = update.message.text.split(" ",maxsplit=1)
     if len(args) > 1:
         link = args[1]
-        msg = sendMessage(f"Cloning: <code>{link}</code>",context.bot,update)
+        msg = sendMessage(f"𝗖𝗹𝗼𝗻𝗶𝗻𝗴..𝗪𝗮𝗶𝘁 𝗽𝗹𝘀.🤓\n\n📨 Link:\n <code>{link}</code>",context.bot,update)
         gd = GoogleDriveHelper()
         result, button = gd.clone(link)
         deleteMessage(context.bot,msg)
         sendMarkup(result,context.bot,update,button)
     else:
-        sendMessage("Provide G-Drive Shareable Link to Clone.",context.bot,update)
+         sendMessage("Dammnn 😒😐 \nProvide Google Drive Shareable Link For Clone 🌝\n\n📢 𝐄𝐱𝐚𝐦𝐩𝐥𝐞:\n <code>/clon1 your Google drive Link</code>\n\n💡 For More Help Join Support Group\n 📨 @MaxxBotChat",context.bot,update)
 
 clone_handler = CommandHandler(BotCommands.CloneCommand,cloneNode,filters=CustomFilters.authorized_chat | CustomFilters.authorized_user)
 dispatcher.add_handler(clone_handler)
