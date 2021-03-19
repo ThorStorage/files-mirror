@@ -239,7 +239,7 @@ def _mirror(bot, update, isTar=False, extract=False):
                     listener = MirrorListener(bot, update, pswd, isTar, tag, extract)
                     tg_downloader = TelegramDownloadHelper(listener)
                     tg_downloader.add_download(reply_to, f'{DOWNLOAD_DIR}{listener.uid}/', name)
-                    sendMessage(f"<b> Your Telegram media has been ADDED for Mirror check /status</b>", bot, update)
+                    sendMessage(f"<b> Your Telegram media has been ADDED for Mirror check /{BotCommands.StatusCommand}</b>", bot, update)
                     if len(Interval) == 0:
                         Interval.append(setInterval(DOWNLOAD_STATUS_UPDATE_INTERVAL, update_all_messages))
                     return
@@ -268,7 +268,7 @@ def _mirror(bot, update, isTar=False, extract=False):
             sendMessage(f"<b>★ Mega.nz Link Added To 📊 /{BotCommands.StatusCommand}\n★ Only 1 Download At A Time Otherwise Ban.\n★ Do Not Forget To Read Mega Download Rules.</b>", bot, update)
     else:
         ariaDlManager.add_download(link, f'{DOWNLOAD_DIR}/{listener.uid}/', listener, name)
-        sendMessage(f"<b> Your Link has been ADDED for Mirror😋.\n Check /Status</b>", bot, update)
+        sendMessage(f"<b> Your Link has been ADDED for Mirror😋.\n Check /{BotCommands.StatusCommand}</b>", bot, update)
     if len(Interval) == 0:
         Interval.append(setInterval(DOWNLOAD_STATUS_UPDATE_INTERVAL, update_all_messages))
 
