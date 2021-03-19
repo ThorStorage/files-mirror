@@ -20,8 +20,8 @@ def _watch(bot: Bot, update, isTar=False):
         msg = f"/{BotCommands.WatchCommand} [yt_dl supported link] [quality] |[CustomName] to mirror with youtube_dl.\n\n"
         msg += "<b>Note :- Quality and custom name are optional</b>\n\nExample of quality :- audio, 144, 240, 360, 480, 720, 1080, 2160."
         msg += "\n\nIf you want to use custom filename, plz enter it after |"
-        msg += f"\n\nExample :-\n<code>/{BotCommands.WatchCommand} https://youtu.be/Pk_TthHfLeE 720 |Slam</code>\n\n"
-        msg += "This file will be downloaded in 720p quality and it's name will be <b>Slam</b>"
+        msg += f"\n\nExample :-\n<code>/{BotCommands.WatchCommand} https://youtu.be/lBKBUtkRMd0 720 |My Own Name</code>\n\n"
+        msg += "This file will be downloaded in 720p quality and it's name will be <b>My own Name</b>"
         sendMessage(msg, bot, update)
         return
     try:
@@ -49,7 +49,7 @@ def _watch(bot: Bot, update, isTar=False):
     listener = MirrorListener(bot, update, pswd, isTar, tag)
     ydl = YoutubeDLHelper(listener)
     threading.Thread(target=ydl.add_download,args=(link, f'{DOWNLOAD_DIR}{listener.uid}', qual, name)).start()
-    sendMessage(f"<b>★Your YTDL Link Has Been Added To Download Queue.\n☆ Obey Rules On Pinned Message To Avoid Being Banned.\n★ Check Status To See Current Progress</b> /{BotCommands.StatusCommand}", bot, update)
+    sendMessage(f"<b>Your YouTube Link has been ADDED for Mirror 😋.\n Check /{BotCommands.StatusCommand}", bot, update)
     if len(Interval) == 0:
         Interval.append(setInterval(DOWNLOAD_STATUS_UPDATE_INTERVAL, update_all_messages))
 
