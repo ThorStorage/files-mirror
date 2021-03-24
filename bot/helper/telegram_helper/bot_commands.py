@@ -13,12 +13,12 @@ class _BotCommands:
         self.PingCommand = 'ping'
         self.RestartCommand = 'restart5'
         self.StatsCommand = 'stats'
-        self.HelpCommand = 'help'
+        self.HelpCommand = 'help5'
         self.LogCommand = 'log'
         self.SpeedCommand = 'speedtest'
         self.CloneCommand = "clone5"
-        self.WatchCommand = 'watch'
-        self.TarWatchCommand = 'tarwatch'
+        self.WatchCommand = 'youtube'
+        self.TarWatchCommand = 'playlist'
         self.DeleteCommand = 'del'
         self.UsageCommand = 'usage'
 
