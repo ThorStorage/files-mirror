@@ -10,36 +10,36 @@ from dotenv import load_dotenv
 from pyrogram import Client
 from telegraph import Telegraph
 import socket
-
+ 
 socket.setdefaulttimeout(600)
-
+ 
 botStartTime = time.time()
 if os.path.exists('log.txt'):
     with open('log.txt', 'r+') as f:
         f.truncate(0)
-
+ 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     handlers=[logging.FileHandler('log.txt'), logging.StreamHandler()],
                     level=logging.INFO)
-
+ 
 load_dotenv('config.env')
-
+ 
 Interval = []
-
-
+ 
+ 
 def getConfig(name: str):
     return os.environ[name]
-
-
+ 
+ 
 LOGGER = logging.getLogger(__name__)
-
+ 
 try:
     if bool(getConfig('_____REMOVE_THIS_LINE_____')):
         logging.error('The README.md file there to be read! Exiting now!')
         exit()
 except KeyError:
     pass
-
+ 
 aria2 = aria2p.API(
     aria2p.Client(
         host="http://localhost",
@@ -47,10 +47,10 @@ aria2 = aria2p.API(
         secret="",
     )
 )
-
+ 
 DOWNLOAD_DIR = None
 BOT_TOKEN = None
-
+ 
 download_dict_lock = threading.Lock()
 status_reply_dict_lock = threading.Lock()
 # Key: update.effective_chat.id
@@ -74,7 +74,7 @@ try:
         AUTHORIZED_CHATS.add(int(chats))
 except:
     pass
-
+ 
 try:
     BOT_TOKEN = getConfig('BOT_TOKEN')
     parent_id = getConfig('GDRIVE_FOLDER_ID')
@@ -86,40 +86,14 @@ try:
     AUTO_DELETE_MESSAGE_DURATION = int(getConfig('AUTO_DELETE_MESSAGE_DURATION'))
     TELEGRAM_API = getConfig('TELEGRAM_API')
     TELEGRAM_HASH = getConfig('TELEGRAM_HASH')
-    HEROKU_API_KEY = getConfig('HEROKU_API_KEY')
-    HEROKU_APP_NAME = getConfig('HEROKU_APP_NAME')
 except KeyError as e:
     LOGGER.error("One or more env variables missing! Exiting now")
     exit(1)
-
-try:
-    UPTOBOX_TOKEN = getConfig('UPTOBOX_TOKEN')
-except KeyError:
-    logging.warning('UPTOBOX_TOKEN not provided!')
-    UPTOBOX_TOKEN = None
-try:
-    UPTOBOX_TOKEN = getConfig('UPTOBOX_TOKEN')
-except KeyError:
-    logging.warning('UPTOBOX_TOKEN not provided!')
-    UPTOBOX_TOKEN = None
-try:
-    MEGA_API_KEY = getConfig('MEGA_API_KEY')
-except KeyError:
-    LOGGER.warning('MEGA API KEY not provided!')
-    MEGA_API_KEY = None
-try:
-    MEGA_EMAIL_ID = getConfig('MEGA_EMAIL_ID')
-    MEGA_PASSWORD = getConfig('MEGA_PASSWORD')
-    if len(MEGA_EMAIL_ID) == 0 or len(MEGA_PASSWORD) == 0:
-        raise KeyError
-except KeyError:
-    LOGGER.warning('MEGA Credentials not provided!')
-    MEGA_EMAIL_ID = None
-    MEGA_PASSWORD = None
-
+ 
 LOGGER.info("Generating USER_SESSION_STRING")
 with Client(':memory:', api_id=int(TELEGRAM_API), api_hash=TELEGRAM_HASH, bot_token=BOT_TOKEN) as app:
     USER_SESSION_STRING = app.export_session_string()
+ 
 #Generate Telegraph Token
 sname = ''.join(random.SystemRandom().choices(string.ascii_letters, k=8))
 LOGGER.info("Generating Telegraph Token using '" + sname + "' name")
@@ -127,7 +101,22 @@ telegraph = Telegraph()
 telegraph.create_account(short_name=sname)
 telegraph_token = telegraph.get_access_token()
 LOGGER.info("Telegraph Token Generated: '" + telegraph_token + "'")
-
+ 
+try:
+    HEROKU_API_KEY = getConfig('HEROKU_API_KEY')
+except KeyError:
+    logging.warning('HEROKU API KEY not provided!')
+    HEROKU_API_KEY = None
+try:
+    HEROKU_APP_NAME = getConfig('HEROKU_APP_NAME')
+except KeyError:
+    logging.warning('HEROKU APP NAME not provided!')
+    HEROKU_APP_NAME = None
+try:
+    UPTOBOX_TOKEN = getConfig('UPTOBOX_TOKEN')
+except KeyError:
+    logging.warning('UPTOBOX_TOKEN not provided!')
+    UPTOBOX_TOKEN = None
 try:
     MEGA_API_KEY = getConfig('MEGA_API_KEY')
 except KeyError:
@@ -220,7 +209,7 @@ try:
 except KeyError:
     SHORTENER = None
     SHORTENER_API = None
-
+ 
 app = Client('slam', api_id=TELEGRAM_API, api_hash=TELEGRAM_HASH, bot_token=BOT_TOKEN)
 updater = tg.Updater(token=BOT_TOKEN,use_context=True)
 bot = updater.bot
